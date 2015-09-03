@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sinewavemultimedia.blip</groupId>
 	<artifactId>BlipJSNIWrapper</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<properties>
 		<gwt.version>2.5.0</gwt.version>
 		<gwt.maven.version>2.5.0</gwt.maven.version>

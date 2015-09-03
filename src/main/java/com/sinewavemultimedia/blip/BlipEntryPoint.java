@@ -6,8 +6,10 @@ import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.core.client.JsArrayInteger;
 import com.google.gwt.core.client.JsArrayUtils;
+import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.Window;
 import com.sinewavemultimedia.blip.SampleLoaderJso;
+import com.sinewavemultimedia.blip.interfaces.Each;
 import com.sinewavemultimedia.blip.interfaces.Tick;
 
 public class BlipEntryPoint implements EntryPoint{
@@ -44,7 +46,7 @@ public class BlipEntryPoint implements EntryPoint{
 		return o==1;
 	}-*/;
 	/*
-	 * Create a native javascript object to configure the SampleLoader 
+	 * Create a native javascript object to configure a SampleLoader for example 
 	 */
 	private static final native JavaScriptObject createSamples()/*-{
 		return {
@@ -64,7 +66,22 @@ public class BlipEntryPoint implements EntryPoint{
 		});
 		SampleLoaderJso.create()
 		.setSamples(createSamples())
-		.setDone(_loaded())
+		.setEach(new Each() {
+			
+			@Override
+			public void onEach(String name) {
+				Window.alert("Sample "+name+" loaded");
+				
+			}
+		})
+		//.setDone(_loaded())
+		.setDone(new Command() {
+			
+			@Override
+			public void execute() {
+				loaded();
+			}
+		})
 		.load();
 	}
 	/*

@@ -1,6 +1,8 @@
 package com.sinewavemultimedia.blip;
 
 import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.user.client.Command;
+import com.sinewavemultimedia.blip.interfaces.Each;
 import com.sinewavemultimedia.blip.interfaces.SampleLoader;
 
 public class SampleLoaderJso extends JavaScriptObject implements SampleLoader {
@@ -22,11 +24,18 @@ public class SampleLoaderJso extends JavaScriptObject implements SampleLoader {
 		return this.samples();
 	}-*/;
 
+	@Override
+	public final native SampleLoader setEach(Each e) /*-{
+		return this.each(function(n){ e.@com.sinewavemultimedia.blip.interfaces.Each::onEach(Ljava/lang/String;)(n); });
+	}-*/;
 	public final native SampleLoaderJso setEach(JavaScriptObject o)/*-{
 		return this.each(o);
 	}-*/;
 	public final native JavaScriptObject getEach() /*-{
 		return this.each();
+	}-*/;
+	public final native SampleLoaderJso setDone(Command o) /*-{
+		return this.done(function(){ o.@com.google.gwt.user.client.Command::execute()(); });
 	}-*/;
 
 	public final native SampleLoaderJso setDone(JavaScriptObject o)/*-{
